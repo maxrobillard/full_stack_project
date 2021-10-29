@@ -1,0 +1,74 @@
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    {% block css %}{% endblock %}
+
+    <link href="{{ url_for('static', path='/base.css') }}" rel="stylesheet">
+
+    {% block title %}{% endblock %}
+  </head>
+  <body>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="navbar navbar-inverse" style="top: 0; position: fixed; margin-top: 0; width: 100%">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                        <a href="#" class="navbar-brand">Full Stack Project</a>
+                    </div>
+
+                    <div class="navbar-collapse collapse" id="mobile_menu">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">A propos de nous <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Informations</a></li>
+                                    <li><a href="#">Informations</a></li>
+                                </ul>
+                            </li>
+                            <li class="{% block inscription %}{% endblock %}"><a href="/inscription">Inscription</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Gallery</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <form action="" class="navbar-form">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="search" name="search" id="" placeholder="Recherche" class="form-control">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/profil"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Se connecter / S'Inscrire <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/connection">Se connecter</a></li>
+                                    <li><a href="/inscription">S'inscrire</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <div class="content">
+      {% block content %}{% endblock %}
+      </div>
+      {% block script %}{% endblock %}
+  </body>
+
+
+</html>
