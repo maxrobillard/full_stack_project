@@ -26,6 +26,11 @@ async def read_index(request: Request):
     return templates.TemplateResponse("inscription.html", {"request": request})
 
 
+@api_router.get("/connexion", response_class=HTMLResponse, status_code=200)
+async def read_index(request: Request):
+    return templates.TemplateResponse("connexion.html", {"request": request})
+
+
 @api_router.get("/aide", response_class=HTMLResponse, status_code=200)
 async def read_index(request: Request):
     return templates.TemplateResponse("aide.html", {"request": request})
