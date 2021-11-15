@@ -3,6 +3,11 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+import crud, models, schemas
+from database import SessionLocal, engine
+
+models.BaseSQL.metadata.create_all(bind=engine)
+
 app = FastAPI(title="test")
 
 api_router = APIRouter()
@@ -11,7 +16,15 @@ app.mount("/static", StaticFiles(directory="./app/static"), name="static")
 templates = Jinja2Templates(directory="./app/templates")
 
 
-@api_router.get("/" , response_class=HTMLResponse, status_code=200)
+def get_db():
+    try:
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
+
+
+@api_router.get("/", response_class=HTMLResponse, status_code=200)
 async def read_root(request: Request):
     return templates.TemplateResponse("inscription.html", {"request": request})
 
@@ -34,6 +47,11 @@ async def read_index(request: Request):
 @api_router.get("/aide", response_class=HTMLResponse, status_code=200)
 async def read_index(request: Request):
     return templates.TemplateResponse("aide.html", {"request": request})
+
+
+@app.get("/services/app_web")
+def read_service1():
+    return {"status_code": 200, "message": "service1 is called"}
 
 
 app.include_router(api_router)

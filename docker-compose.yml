@@ -15,7 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile_app
     ports:
-      - 5000:5000
+      - "5000:5000"
     restart: always
     networks:
       - kong-net
@@ -63,7 +63,9 @@ services:
         condition: on-failure
 
   kong:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
+    build:
+      context: .
+      dockerfile: Dockerfile_kong
     user: "${KONG_USER:-kong}"
     depends_on:
       - db
