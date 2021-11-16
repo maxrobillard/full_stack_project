@@ -4,3 +4,4 @@ uvicorn>=0.15.0,<0.16.0
 jinja2
 aiofiles
 sqlalchemy
+psycopg2==2.8.6

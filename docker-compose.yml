@@ -17,6 +17,8 @@ services:
     ports:
       - "5000:5000"
     restart: always
+    depends_on:
+      - db
     networks:
       - kong-net
     volumes:
@@ -103,6 +105,10 @@ services:
 
   db:
     image: postgres:9.5
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
       POSTGRES_USER: ${KONG_PG_USER:-kong}
