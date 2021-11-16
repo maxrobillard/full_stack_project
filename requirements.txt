@@ -5,3 +5,6 @@ jinja2
 aiofiles
 sqlalchemy
 psycopg2==2.8.6
+pydantic[email]
+python-dotenv
+passlib[bcrypt]
