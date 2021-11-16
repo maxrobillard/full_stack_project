@@ -1,6 +1,6 @@
 from typing import List
 from pydantic import BaseModel, EmailStr
-from app.db.schemas.article import Article
+from app.schemas.article import Article
 
 
 class UserBase(BaseModel):

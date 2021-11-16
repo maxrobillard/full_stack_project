@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from sqlalchemy.orm import Session
 from fastapi import Depends
 
-from app.db.schemas.user import UserCreate, ShowUser
+from app.schemas.user import UserCreate, ShowUser
 from app.db.database import get_db
 from app.db.repository.users import create_new_user
 

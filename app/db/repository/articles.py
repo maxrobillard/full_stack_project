@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from app.db.schemas.article import ArticleCreate
+from app.schemas.article import ArticleCreate
 from app.db.models.articles import Article
 
 

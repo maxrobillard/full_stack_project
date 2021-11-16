@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from fastapi import Depends, HTTPException, status
 
 from app.db.database import get_db
-from app.db.schemas.article import ArticleCreate, ShowArticle
+from app.schemas.article import ArticleCreate, ShowArticle
 from app.db.repository.articles import create_new_article, retreive_article, list_articles, update_article_by_id, delete_article_by_id
 
 from typing import List
@@ -44,7 +44,7 @@ def update_article(id: int, article: ArticleCreate, db: Session = Depends(get_db
 @router.delete("/delete/{id}")
 def delete_article(id: int, db: Session = Depends(get_db)):
     current_user_id = 1
-    message = delete_article_by_id(id=id, db= db, writer_by=current_user_id)
+    message = delete_article_by_id(id=id, db= db, writer_id=current_user_id)
     if not message:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"L'article avec l'id {id} n'a pas été trouvé")
     return {"msg":"Les données ont été supprimée"}
