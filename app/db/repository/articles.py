@@ -15,3 +15,27 @@ def create_new_article(article: ArticleCreate, db: Session, writer_id: int):
 def retreive_article(id: int, db: Session):
     item = db.query(Article).filter(Article.id == id).first()
     return item
+
+
+def list_articles(db: Session):
+    articles = db.query(Article).all()
+    return articles
+
+
+def update_article_by_id(id: int, article: ArticleCreate, db: Session, writer_id):
+    existing_article = db.query(Article).filter(Article.id == id)
+    if not existing_article.first():
+        return 0
+    article.__dict__.update(writer_id=writer_id)
+    existing_article.update(article.__dict__)
+    db.commit()
+    return 1
+
+
+def delete_article_by_id(id: int, db: Session, writer_id):
+    existing_article = db.query(Article).filter(Article.id == id)
+    if not existing_article.first():
+        return 0
+    existing_article.delete(synchronize_session=False)
+    db.commit()
+    return 1
