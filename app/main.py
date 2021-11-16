@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.apis.version1.routes import api_router
+from app.apis.base import api_router
 from fastapi.staticfiles import StaticFiles
 
 from app.db.database import SessionLocal, engine
