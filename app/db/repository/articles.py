@@ -39,3 +39,9 @@ def delete_article_by_id(id: int, db: Session, writer_id):
     existing_article.delete(synchronize_session=False)
     db.commit()
     return 1
+
+
+def search_article(query: str, db: Session):
+    print("la requete est :" + query)
+    articles = db.query(Article).filter(Article.title.contains(query))
+    return articles

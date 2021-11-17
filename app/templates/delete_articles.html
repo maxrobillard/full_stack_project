@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Suppression de l'article</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="display-5 text-center text-danger mb-3">Supprimer les articles</h1>
+    </div>
+    <div id="result" class="text-danger text-bold lead"></div>
+  </div>
+
+  <div class="row">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sr. No.</th>
+            <th scope="col">Titre</th>
+            <th scope="col">id</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for article in articles %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{article.title}}</td>
+                <td>{{article.id}}</td>
+                <td><button class="btn btn-danger btn-sm" onclick="delete_article({{article.id}})">Supprimer</button></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+    function delete_article(id){
+        fetch('/articles/delete/'+id,{
+        method:'DELETE',})
+        .then(response => response.json())
+        .then(document.getElementById('result').innerHTML = "Refreshing...")
+        .then(data => document.getElementById('result').innerHTML = data.detail);
+    }
+</script>
+{% endblock %}

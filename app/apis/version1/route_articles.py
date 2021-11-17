@@ -43,11 +43,13 @@ def update_article(id: int, article: ArticleCreate, db: Session = Depends(get_db
 @router.delete("/delete/{id}")
 def delete_article(id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user_from_token)):
     article = retreive_article(id=id, db=db)
+    print(article.id)
     if not article:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"L'article avec l'id {id} n'a pas été trouvé")
     print(article.writer_id, current_user.id, current_user.is_superuser)
     if article.writer_id == current_user.id or current_user.is_superuser:
         delete_article_by_id(id=id, db=db, writer_id=current_user.id)
+        print("Supprimé avec succés")
         return {"detail": "Supprimé avec succés"}
     raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED, detail="Vous n'êtes pas autorisé à faire celà !"

@@ -11,6 +11,7 @@
   </head>
   <body>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <div class="row">
 <div class="navbar navbar-inverse" style="top: 0; position: fixed; margin-top: 0; width: 100%">
         <div class="container-fluid">
             <div class="row">
@@ -18,29 +19,20 @@
 
                     <div class="navbar-header">
                         <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                        <a href="#" class="navbar-brand">Full Stack Project</a>
+                        <a href="https://github.com/maxrobillard/full_stack_project" class="navbar-brand">Full Stack Project</a>
                     </div>
 
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="/">Accueil</a></li>
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">A propos de nous <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Informations</a></li>
-                                    <li><a href="#">Informations</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Gallery</a></li>
-                            <li><a href="#">Contact Us</a></li>
                         </ul>
                         <ul class="nav navbar-nav">
                             <li>
-                                <form action="" class="navbar-form">
+                                <form action="/search" class="navbar-form">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="search" name="search" id="" placeholder="Recherche" class="form-control">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                                            <input type="search" name="query" id="" placeholder="Recherche" class="form-control">
+                                            <span class="input-group-addon"><button style="border:0px" type="submit"><span class="glyphicon glyphicon-search"></button></span></span>
                                         </div>
                                     </div>
                                 </form>
@@ -61,10 +53,16 @@
             </div>
         </div>
     </div>
+  </div>
+      <div class="row"></div>
+      <div class="row" style="margin-top:50px"></div>
+      <div class="row"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <div class="row">
       <div class="content">
       {% block content %}{% endblock %}
+      </div>
       </div>
       {% block script %}{% endblock %}
   </body>
