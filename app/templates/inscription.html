@@ -22,19 +22,21 @@
 
             <div class="container">
                 <div class="signup-content">
+                    <div class="text-danger font-weight-bold">
+                      {% for error in errors %}
+                        <li>{{error}}</li>
+                      {% endfor %}
+                    </div>
                     <form method="POST" id="signup-form" class="signup-form">
                         <h2 class="form-title">Creation du compte</h2>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="name" id="name" placeholder="Votre Nom"/>
+                            <input type="email" class="form-input" name="email" id="email" value="{{email}}" placeholder="Votre adresse mail"/>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-input" name="email" id="email" placeholder="Votre adresse mail"/>
+                            <input type="password" class="form-input" name="password" id="password" value="{{password}}" placeholder="Mot de passe"/>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-input" name="password" id="password" placeholder="Mot de passe"/>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Validation du mot de passe"/>
+                            <input type="password" class="form-input" name="re_password" id="re_password" value="{{password}}" placeholder="Validation du mot de passe"/>
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />

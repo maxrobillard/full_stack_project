@@ -6,15 +6,14 @@ from sqlalchemy.orm import Session
 from app.db.repository.articles import list_articles, retreive_article
 from app.db.database import get_db
 
-
 templates = Jinja2Templates(directory="./app/templates")
 router = APIRouter(include_in_schema=False)
 
 
 @router.get("/")
-async def home(request: Request, db: Session = Depends(get_db)):
+async def home(request: Request, db: Session = Depends(get_db), msg: str = None):
     articles = list_articles(db=db)
-    return templates.TemplateResponse("homepage.html", {"request": request,"articles":articles})
+    return templates.TemplateResponse("homepage.html", {"request": request, "articles": articles, "msg": msg})
 
 
 @router.get('/details/{id}')

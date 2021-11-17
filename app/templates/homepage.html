@@ -6,15 +6,17 @@
 {% endblock %}
 
 {% block content %}
-  {% with msg=msg %}
-    {% include "components/alerts.html" %}
-  {% endwith %}
   <div class="container">
   <div class="row">
     <div class="col">
       <h1 class="display-5">Trouver des articles ....</h1>
     </div>
   </div>
+    <div class="row">
+        {% with msg=msg %}
+          {% include "components/alerts.html" %}
+        {% endwith %}
+    </div>
   <div class="row">
       {% for article in articles %}
         <div class="col-lg-4 col-md-3 col-sm-10 mr-auto">
