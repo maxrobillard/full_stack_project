@@ -9,8 +9,9 @@ class ArticleBase(BaseModel):
     date_posted: Optional[date] = datetime.now().date()
 
 
-class ArticleCreate(BaseModel):
-    pass
+class ArticleCreate(ArticleBase):
+    title = str
+    body = str
 
 
 class Article(ArticleBase):

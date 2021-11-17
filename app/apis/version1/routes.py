@@ -8,11 +8,6 @@ templates = Jinja2Templates(directory="./app/templates")
 api_router = APIRouter()
 
 
-@api_router.get("/", response_class=HTMLResponse, status_code=200)
-async def read_root(request: Request):
-    return templates.TemplateResponse("inscription.html", {"request": request})
-
-
 @api_router.get("/inscription", response_class=HTMLResponse, status_code=200)
 async def read_index(request: Request):
     return templates.TemplateResponse("inscription.html", {"request": request})

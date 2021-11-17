@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+  <title>article Detail</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="display-5">article Detail</h1>
+    </div>
+  </div>
+
+  <div class="row">
+      <table class="table table-striped table-hover">
+        <tbody>
+          <tr>
+            <th scope="row">article Title</th>
+            <td colspan="2">{{article.title}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Description</th>
+            <td colspan="2">{{article.body}}</td>
+          </tr>
+          <tr>
+            <th scope="row">date de publication</th>
+            <td colspan="2">{{article.date_posted}}</td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

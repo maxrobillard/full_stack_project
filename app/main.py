@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from app.apis.base import api_router
+from app.webapps.base import api_router as web_app_router
 from fastapi.staticfiles import StaticFiles
 
 from app.db.database import SessionLocal, engine
-from app.db.base import BaseSQL
+from app.db.database import Base
 
 
 def configure_static(app):
@@ -12,11 +13,12 @@ def configure_static(app):
 
 def include_router(app):
     app.include_router(api_router)
+    app.include_router(web_app_router)
 
 
 def create_tables():
     print("create_tables")
-    BaseSQL.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
 
 
 def start_application():

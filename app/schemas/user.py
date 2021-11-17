@@ -21,7 +21,6 @@ class User(UserBase):
 
 
 class ShowUser(BaseModel):
-    username: str
     email: EmailStr
     is_active: bool
 

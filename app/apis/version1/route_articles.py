@@ -5,16 +5,16 @@ from fastapi import Depends, HTTPException, status
 from app.db.database import get_db
 from app.schemas.article import ArticleCreate, ShowArticle
 from app.db.repository.articles import create_new_article, retreive_article, list_articles, update_article_by_id, delete_article_by_id
-
+from app.apis.version1.route_login import get_current_user_from_token
 from typing import List
+from app.db.models.users import User
 
 router = APIRouter()
 
 
 @router.post("/create-article/", response_model=ShowArticle)
-def create_article(article: ArticleCreate, db: Session = Depends(get_db)):
-    current_user = 1
-    article = create_new_article(article=article, db=db, writer_id=current_user)
+def create_article(article: ArticleCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user_from_token)):
+    article = create_new_article(article=article, db=db, writer_id=current_user.id)
     return article
 
 
@@ -33,18 +33,22 @@ def read_articles(db: Session = Depends(get_db)):
 
 
 @router.put("/update/{id}")
-def update_article(id: int, article: ArticleCreate, db: Session = Depends(get_db)):
-    current_user_id = 1
-    message = update_article_by_id(id=id, article=article, db=db, writer_id=current_user_id)
+def update_article(id: int, article: ArticleCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user_from_token)):
+    message = update_article_by_id(id=id, article=article, db=db, writer_id=current_user.id)
     if not message:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"L'article avec l'id {id} n'a pas été trouvé")
     return {"msg":"Les données ont été mise à jour"}
 
 
 @router.delete("/delete/{id}")
-def delete_article(id: int, db: Session = Depends(get_db)):
-    current_user_id = 1
-    message = delete_article_by_id(id=id, db= db, writer_id=current_user_id)
-    if not message:
+def delete_article(id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user_from_token)):
+    article = retreive_article(id=id, db=db)
+    if not article:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"L'article avec l'id {id} n'a pas été trouvé")
-    return {"msg":"Les données ont été supprimée"}
+    print(article.writer_id, current_user.id, current_user.is_superuser)
+    if article.writer_id == current_user.id or current_user.is_superuser:
+        delete_article_by_id(id=id, db=db, writer_id=current_user.id)
+        return {"detail": "Supprimé avec succés"}
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED, detail="Vous n'êtes pas autorisé à faire celà !"
+    )
