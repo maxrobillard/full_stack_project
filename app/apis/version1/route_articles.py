@@ -52,5 +52,5 @@ def delete_article(id: int, db: Session = Depends(get_db), current_user: User = 
         print("Supprimé avec succés")
         return {"detail": "Supprimé avec succés"}
     raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED, detail="Vous n'êtes pas autorisé à faire celà !"
+        status_code=status.HTTP_401_UNAUTHORIZED, detail="Vous n'êtes pas autorisé à faire cela !"
     )

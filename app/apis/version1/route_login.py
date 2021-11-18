@@ -42,8 +42,15 @@ def login_for_access_token(response: Response, form_data: OAuth2PasswordRequestF
 oauth2_scheme = OAuth2PasswordBearerWithCookie(tokenUrl='/login/token')
 
 
+@router.post("/token", response_model=Token)
+def logout_token(response: Response):
+    response.delete_cookie(key="access_token")
+    access_token = None
+    return {"access_token": access_token, "token_type": "bearer"}
+
+
 def get_current_user_from_token(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
-    credentials_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Vous n'êtes pas autorisé")
+    credentials_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Impossible de valider les identifiants")
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
         email: str = payload.get("sub")
@@ -56,3 +63,8 @@ def get_current_user_from_token(token: str = Depends(oauth2_scheme), db: Session
     if user is None:
         raise credentials_exception
     return user
+
+
+def get_current_token(token: str = Depends(oauth2_scheme)):
+    print(token)
+    return token

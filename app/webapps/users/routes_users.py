@@ -23,7 +23,7 @@ async def inscription(request: Request, db: Session = Depends(get_db)):
     form = UserCreateForm(request)
     await form.load_data()
     if await form.is_valid():
-        user = UserCreate(email=form.email, password=form.password)
+        user = UserCreate(username=form.username, email=form.email, password=form.password)
         try:
             user = create_new_user(user=user, db=db)
             return responses.RedirectResponse("/?msg= Inscription réussie", status_code=status.HTTP_302_FOUND)

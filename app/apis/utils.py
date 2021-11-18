@@ -30,7 +30,7 @@ class OAuth2PasswordBearerWithCookie(OAuth2):
             if self.auto_error:
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Not authenticated",
+                    detail="Non connecté",
                     headers={"WWW-Authenticate": "Bearer"},
                 )
             else:

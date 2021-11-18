@@ -8,6 +8,7 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
+    username: str
     password: str
 
 
@@ -21,6 +22,7 @@ class User(UserBase):
 
 
 class ShowUser(BaseModel):
+    username: str
     email: EmailStr
     is_active: bool
 

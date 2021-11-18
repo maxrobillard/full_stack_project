@@ -18,6 +18,8 @@ def include_router(app):
 
 def create_tables():
     print("create_tables")
+    # si bug de la bdd
+    #Base.metadata.drop_all(engine)
     Base.metadata.create_all(bind=engine)
 
 

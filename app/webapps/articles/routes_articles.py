@@ -29,7 +29,7 @@ def article_detail(id: int, request: Request, db: Session = Depends(get_db)):
 
 
 @router.get("/post_article")
-def create_article(request: Request, db: Session = Depends(get_db)):
+def create_article(request: Request):
     return templates.TemplateResponse("create_article.html", {'request': request})
 
 
