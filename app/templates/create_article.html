@@ -1,8 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}
-  <title>Poster un article</title>
-{% endblock %}
+{% block css %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Icon -->
+    <link href="{{ url_for('static', path='/fonts/material-icon/css/material-design-iconic-font.min.css') }}" rel="stylesheet">
+
+    <!-- Main css -->
+    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
+    {% endblock %}
 
 {% block content %}
   <div class="container">
@@ -13,7 +20,7 @@
         {% endfor %}
       </div>
     </div>
-
+  <div>
     <div class="row my-5">
       <h3 class="text-center display-4">poster un article</h3>
       <form method="POST">
@@ -29,5 +36,6 @@
         <button style="margin-top:10px" type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
+  </div>
   </div>
   {% endblock %}
