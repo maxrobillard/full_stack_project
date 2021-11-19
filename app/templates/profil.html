@@ -74,6 +74,7 @@
                                  </p>
                               </div>
                               <a href="/update_article/{{article.id}}" class="btn btn-primary">modifier</a>
+                              <a onclick="delete_article({{article.id}})" href="javascript:window.location.reload()" class="btn btn-danger btn-sm">Supprimer</a>
                            </div>
                            <!-- end timeline-body -->
                         </li>
@@ -90,4 +91,18 @@
       </div>
    </div>
 </div>
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript">
+    function delete_article(id){
+        fetch('/articles/delete/'+id,{
+        method:'DELETE',})
+        .then(response => response.json())
+        .then(document.getElementById('result').innerHTML = "Refreshing...")
+        .then(data => document.getElementById('result').innerHTML = data.detail);
+
+    }
+</script>
 {% endblock %}

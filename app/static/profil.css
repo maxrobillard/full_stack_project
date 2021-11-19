@@ -1,6 +1,7 @@
 .profile-header {
     position: relative;
-    overflow: hidden
+    overflow: hidden;
+    z-index: -1;
 }
 
 .profile-header .profile-header-cover {
@@ -17,7 +18,7 @@
 
 .profile-header .profile-header-cover:before {
     content: '';
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
@@ -411,7 +412,8 @@ select.form-control:not([size]):not([multiple]) {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    position: relative
+    position: relative;
+    z-index: -1;
 }
 
 .timeline:before {
@@ -483,6 +485,7 @@ select.form-control:not([size]):not([multiple]) {
     margin-right: 17%;
     background: #fff;
     position: relative;
+    z-index:-1;
     padding: 20px 25px;
     border-radius: 6px
 }

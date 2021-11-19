@@ -8,7 +8,7 @@ load_dotenv(dotenv_path=env_path)
 class Settings:
     SECRET_KEY: str = "clesecrete"
     ALGORITHM = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES = 1
+    ACCESS_TOKEN_EXPIRE_MINUTES = 120
 
 
 settings = Settings()
