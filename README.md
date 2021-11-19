@@ -81,3 +81,21 @@ La logique Frontend se trouve dans le dossier webapps. Tout comme la partie back
 
 ---
 Le fichier main.py permet de configurer l'API.
+
+---
+## Rest API
+>Afin de vérifier l'API, vous pouvez naviguer sur la page suivante [localhost:8000/docs](http://localhost:8000/docs) et vous pouvez tester les requêtes **GET** et **POST** avec le button *Try it out*.
+
+---
+
+## Amélioration possible
+### Keycloak
+
+>L'implémentation de Keycloak est réalisé dans le docker et le service est opérationnel. Cependant, j'ai décidé de ne pas l'utiliser dans mon projet et gérer l'authentification avec des fonctions écrites dans le backend.
+>Il est tout de même possible de relier keycloak à l'API en apportant de légère modification.
+
+---
+
+### Kong
+>L'implémentation de Kong est réalisé dans le docker et le service est opérationnel. Konga a été instancié aussi à l'adresse http://localhost:1337/ pour permettre de visualiser les flux et les services créés.
+
