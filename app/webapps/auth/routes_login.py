@@ -52,7 +52,6 @@ def logout_remove_cookie(request: Request, response: Response, user: User = Depe
 def profil(request: Request, db: Session = Depends(get_db)):
 
     authorization: str = request.cookies.get("access_token")
-    print(authorization)
     if authorization is not None:
         scheme, param = get_authorization_scheme_param(authorization)
         try:

@@ -83,6 +83,15 @@ La logique Frontend se trouve dans le dossier webapps. Tout comme la partie back
 Le fichier main.py permet de configurer l'API.
 
 ---
+## Test
+
+>**Utilisateur de test** :
+> 
+>**email** : test1@gmail.com
+> 
+>**mot de passe** : 0000
+
+---
 ## Rest API
 >Afin de vérifier l'API, vous pouvez naviguer sur la page suivante [localhost:5000/docs](http://localhost:5000/docs) et vous pouvez tester les requêtes **GET** et **POST** avec le button *Try it out*.
 
