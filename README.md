@@ -109,8 +109,8 @@ Le fichier main.py permet de configurer l'API.
 >L'implémentation de Kong est réalisé dans le docker et le service est opérationnel. Konga a été instancié aussi à l'adresse [localhost:1337](http://localhost:1337/) pour permettre de visualiser les flux et les services créés.
 > Les différentes routes ainsi que le service Api a été créé. 
 > Cependant aucun plugin de kong est utilisé.
-> ![routes_kong](https://github.com/maxrobillard/full_stack_project/img_readme/routes_kong.JPG)
-> ![service_kong](https://github.com/maxrobillard/full_stack_project/img_readme/serviceKong.JPG)
+> ![routes_kong](https://github.com/maxrobillard/full_stack_project/blob/master/img_readme/routes_kong.JPG)
+> ![service_kong](https://github.com/maxrobillard/full_stack_project/blob/master/img_readme/serviceKong.JPG)
 > 
 
 ### Konga
