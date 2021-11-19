@@ -5,7 +5,7 @@ from jose import jwt, JWTError
 from sqlalchemy.orm import Session
 from datetime import timedelta
 from fastapi import status, HTTPException
-
+from app.db.models.users import User
 from app.db.database import get_db
 from app.core.hashing import Hasher
 from app.schemas.tokens import Token
@@ -68,3 +68,12 @@ def get_current_user_from_token(token: str = Depends(oauth2_scheme), db: Session
 def get_current_token(token: str = Depends(oauth2_scheme)):
     print(token)
     return token
+
+
+async def connected(current_user: User = Depends(get_current_user_from_token)):
+    print(current_user.is_active)
+    print(current_user.username)
+    if not current_user.is_active:
+        raise HTTPException(status_code=400, detail="Utilisateur non connecté")
+    return {"connecte": current_user.username}
+

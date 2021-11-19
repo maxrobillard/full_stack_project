@@ -48,14 +48,6 @@ def logout_remove_cookie(request: Request, response: Response, user: User = Depe
     return response
 
 
-async def connected(current_user: User = Depends(get_current_user_from_token)):
-    print(current_user.is_active)
-    print(current_user.username)
-    if not current_user.is_active:
-        raise HTTPException(status_code=400, detail="Utilisateur non connecté")
-    return {"connecte": current_user.username}
-
-
 @api_router.get("/profil")
 def profil(request: Request, db: Session = Depends(get_db)):
 

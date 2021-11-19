@@ -69,7 +69,8 @@ def show_articles_to_delete(request: Request, db: Session = Depends(get_db)):
 @router.get("/search")
 def search(request: Request, db: Session = Depends(get_db), query: Optional[str] = None):
     articles = search_article(query, db=db)
-    return templates.TemplateResponse("homepage.html", {"request": request, "articles": articles})
+    users = get_all_user(db=db)
+    return templates.TemplateResponse("homepage.html", {"request": request, "articles": articles, "users": users})
 
 
 @router.get("/update_article/{id}")
