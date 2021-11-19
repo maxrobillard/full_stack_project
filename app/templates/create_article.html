@@ -12,30 +12,31 @@
     {% endblock %}
 
 {% block content %}
+<div class="main">
+<section class="signup">
   <div class="container">
-    <div class="row">
+    <div class="signup-content">
       <div class="text-danger font-weight-bold">
         {% for error in errors %}
           <li>{{error}}</li>
         {% endfor %}
       </div>
-    </div>
-  <div>
-    <div class="row my-5">
-      <h3 class="text-center display-4">poster un article</h3>
-      <form method="POST">
+      <form method="POST" class="signup-form">
+        <h2 class="form-title">poster un article</h2>
         <div class="mb-3">
           <input type="text" required class="form-control" name="title" value="{{title}}" placeholder="titre de l'article">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Contenu</label>
-          <textarea class="form-control" required name="contenu" id="exampleFormControlTextarea1" rows="3">{{body}}</textarea>
+          <textarea class="form-control" required name="contenu" id="exampleFormControlTextarea1" rows="10">{{body}}</textarea>
           <div id="help" class="form-text"></div>
 
         </div>
         <button style="margin-top:10px" type="submit" class="btn btn-primary">Submit</button>
       </form>
-    </div>
+
   </div>
   </div>
+  </section>
+</div>
   {% endblock %}

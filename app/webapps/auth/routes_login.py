@@ -42,7 +42,7 @@ async def login(request: Request, db: Session = Depends(get_db)):
 @api_router.get("/logout")
 def logout_remove_cookie(request: Request, response: Response, user: User = Depends(get_current_user_from_token)):
     if user.is_active:
-        response = templates.TemplateResponse("connexion.html", {"request": request})
+        response = templates.TemplateResponse("homepage.html", {"request": request})
         logout_token(response=response)
     return response
 
