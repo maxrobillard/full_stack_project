@@ -412,7 +412,6 @@ select.form-control:not([size]):not([multiple]) {
     margin: 0;
     padding: 0;
     position: relative;
-    z-index: -1;
 }
 
 .timeline:before {
@@ -484,7 +483,6 @@ select.form-control:not([size]):not([multiple]) {
     margin-right: 17%;
     background: #fff;
     position: relative;
-    z-index:-1;
     padding: 20px 25px;
     border-radius: 6px
 }

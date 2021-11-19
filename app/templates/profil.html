@@ -28,7 +28,7 @@
                      <div class="profile-header-info">
                         <h4 class="m-t-10 m-b-5">{{user.username}} id: {{user.id}}</h4>
                         <p class="m-b-10">{{user.email}}</p>
-                        <a href="/logout" class="btn btn-sm btn-info mb-2">Deconnexion</a>
+                        <a href="/logout" class="btn btn-sm btn-info mb-2" st>Deconnexion</a>
                         <a href="/post_article" class="btn btn-sm btn-info mb-2">Poster un nouvel article</a>
                      </div>
                      <!-- END profile-header-info -->
@@ -73,7 +73,7 @@
                                     {{article.body}}
                                  </p>
                               </div>
-                              <a href="/update_article/{{article.id}}" class="btn btn-primary">modifier</a>
+                              <a href="/update_article/{{article.id}}" class="btn btn-primary" style="z-index:3">modifier</a>
                               <a onclick="delete_article({{article.id}})" href="javascript:window.location.reload()" class="btn btn-danger btn-sm">Supprimer</a>
                            </div>
                            <!-- end timeline-body -->
