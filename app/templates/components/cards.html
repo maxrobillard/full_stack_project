@@ -1,9 +1,16 @@
-<div class="card shadow p-3 mb-2 bg-body rounded" style="width: 18rem;">
-  <div class="card-body">
-    <h4 class="card-title">{{obj.title}}</h4>
-    <p class="card-text">date de publication : <a>{{obj.date_posted}}</a></p>
-    <p class="card-text">Auteur : <a>{{user.username}}</a></p>
-    <p class="card-text">Contenu : {{obj.body[:60]}} ....</p>
-    <a href="/details/{{obj.id}}" class="btn btn-primary">Lire plus</a>
+<link rel="stylesheet" href="{{ url_for('static', path='/card.css') }}">
+
+
+<div class="card-grid-space">
+    <div class="num">{{obj.id}}</div>
+    <a class="card" href="/details/{{obj.id}}" style="--bg-img: url(https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w=1500)">
+      <div>
+        <h1>{{obj.title[:25]}}</h1>
+        <p>{{obj.body[:60]}} ....</p>
+        <div class="date">{{obj.date_posted}}</div>
+        <div class="tags">
+          <div class="tag">{{user.username}}</div>
+        </div>
+      </div>
+    </a>
   </div>
-</div>
