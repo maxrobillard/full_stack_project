@@ -18,18 +18,23 @@
         {% endwith %}
     </div>
   <div class="row">
-      {% for article in articles %}
-        <div class="col-lg-4 col-md-3 col-sm-10 mr-auto">
-          {% with obj=article %}
-      		{% include "components/cards.html" %}
-    	    {% endwith %}
+        {% for article in articles %}
+          <div class="col-lg-4 col-md-3 col-sm-10 mr-auto">
+            {% with obj=article %}
+              {% for user in users %}
+                  {% if user.id == obj.writer_id %}
+                    {% include "components/cards.html" %}
+                  {% else %}
+                  {% endif %}
+              {% endfor %}
+            {% endwith %}
 
-          {% if loop.index %3 %}
-            </div>
-          {% else %}
-            </div></div><br><div class="row">
-          {% endif %}
-      {% endfor %}
+            {% if loop.index %3 %}
+              </div>
+            {% else %}
+              </div></div><br><div class="row">
+            {% endif %}
+        {% endfor %}
   </div>
 </div>
 {% endblock %}

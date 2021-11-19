@@ -10,6 +10,7 @@ from app.apis.version1.route_login import get_current_user_from_token, logout_to
 from app.webapps.auth.forms import LoginForm
 from fastapi.responses import HTMLResponse
 from app.db.models.users import User
+from app.db.repository.articles import retreive_articles_by_writer
 
 
 templates = Jinja2Templates(directory="./app/templates")
@@ -63,7 +64,8 @@ def profil(request: Request, db: Session = Depends(get_db)):
     if authorization is not None:
         scheme, param = get_authorization_scheme_param(authorization)
         user = get_current_user_from_token(param, db)
-        return templates.TemplateResponse("profil.html", {"request": request, "user": user})
+        articles = retreive_articles_by_writer(user.id, db)
+        return templates.TemplateResponse("profil.html", {"request": request, "user": user, "articles": articles})
     return RedirectResponse("/connexion")
 
 

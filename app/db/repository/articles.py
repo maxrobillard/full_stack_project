@@ -45,3 +45,8 @@ def search_article(query: str, db: Session):
     print("la requete est :" + query)
     articles = db.query(Article).filter(Article.title.contains(query))
     return articles
+
+
+def retreive_articles_by_writer(writer_id: int, db: Session):
+    articles = db.query(Article).filter(Article.writer_id == writer_id)
+    return articles

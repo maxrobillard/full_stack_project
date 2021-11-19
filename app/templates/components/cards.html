@@ -1,7 +1,8 @@
 <div class="card shadow p-3 mb-2 bg-body rounded" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">{{obj.title}}</h5>
-    <p class="card-text">date de publication : <a href="{{obj.date_posted}}">{{obj.date_posted}}</a></p>
+    <p class="card-text">date de publication : <a>{{obj.date_posted}}</a></p>
+    <p class="card-text">Auteur : <a>{{user.username}}</a></p>
     <p class="card-text">Contenu : {{obj.body[:60]}} ....</p>
     <a href="/details/{{obj.id}}" class="btn btn-primary">Lire plus</a>
   </div>

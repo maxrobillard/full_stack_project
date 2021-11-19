@@ -21,3 +21,13 @@ def create_new_user(user: UserCreate, db: Session):
 def get_user_by_email(email: str, db: Session):
     user = db.query(User).filter(User.email == email).first()
     return user
+
+
+def get_user_by_id(id: int, db: Session):
+    user = db.query(User).filter(User.id == id).first()
+    return user
+
+
+def get_all_user(db: Session):
+    users = db.query(User).all()
+    return users

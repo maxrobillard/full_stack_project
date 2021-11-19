@@ -12,7 +12,7 @@ from app.db.models.users import User
 router = APIRouter()
 
 
-@router.post("/create-article/", response_model=ShowArticle)
+@router.post("/create_article", response_model=ShowArticle)
 def create_article(article: ArticleCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user_from_token)):
     article = create_new_article(article=article, db=db, writer_id=current_user.id)
     return article

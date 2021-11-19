@@ -9,8 +9,10 @@ from fastapi.security.utils import get_authorization_scheme_param
 from app.apis.version1.route_login import get_current_user_from_token
 from app.db.database import get_db
 from app.db.models.users import User
-from app.db.repository.articles import create_new_article, search_article
+from app.db.repository.articles import create_new_article, search_article, update_article_by_id
+from app.db.repository.users import get_user_by_id, get_all_user
 from typing import Optional
+from fastapi.responses import RedirectResponse
 
 templates = Jinja2Templates(directory="./app/templates")
 router = APIRouter(include_in_schema=False)
@@ -19,13 +21,16 @@ router = APIRouter(include_in_schema=False)
 @router.get("/")
 async def home(request: Request, db: Session = Depends(get_db), msg: str = None):
     articles = list_articles(db=db)
-    return templates.TemplateResponse("homepage.html", {"request": request, "articles": articles, "msg": msg})
+    users = get_all_user(db=db)
+    accueil = 'active'
+    return templates.TemplateResponse("homepage.html", {"request": request, "articles": articles, "users": users, "msg": msg, "accueil": accueil})
 
 
 @router.get('/details/{id}')
 def article_detail(id: int, request: Request, db: Session = Depends(get_db)):
     article = retreive_article(id=id, db=db)
-    return templates.TemplateResponse("detail.html", {"request": request, "article": article})
+    user = get_user_by_id(id=article.writer_id, db=db)
+    return templates.TemplateResponse("detail.html", {"request": request, "article": article, "user":user})
 
 
 @router.get("/post_article")
@@ -65,3 +70,30 @@ def show_articles_to_delete(request: Request, db: Session = Depends(get_db)):
 def search(request: Request, db: Session = Depends(get_db), query: Optional[str] = None):
     articles = search_article(query, db=db)
     return templates.TemplateResponse("homepage.html", {"request": request, "articles": articles})
+
+
+@router.get("/update_article/{id}")
+def update_article(id: int, request: Request, db: Session = Depends(get_db)):
+    article = retreive_article(id=id, db=db)
+    return templates.TemplateResponse("update_article.html", {"request":request, "article":article})
+
+
+@router.post("/update_article/{id}")
+async def update_article(id: int, request: Request, db: Session = Depends(get_db)):
+    form = ArticleCreateForm(request)
+    await form.load_data()
+    if form.is_valid():
+        try:
+            token = request.cookies.get("access_token")
+            scheme, param = get_authorization_scheme_param(token)
+            current_user: User = get_current_user_from_token(token=param, db=db)
+            article = ArticleCreate(**form.__dict__)
+            article = await update_article_by_id(id=id, article=article, db=db, writer_id=current_user.id)
+
+        except Exception as e:
+            print(e)
+            form.__dict__.get("errors").append("Vous ne pouvez plus modifier cet article")
+            return templates.TemplateResponse("homepage.html", form.__dict__)
+
+    return RedirectResponse("/")
+
