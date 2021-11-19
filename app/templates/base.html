@@ -10,14 +10,14 @@
     {% block title %}{% endblock %}
   </head>
   <body style="background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5)">
-      {% include "navbar.html" %}
-      <div class="row"></div>
+
+      <div class="row" style="z-index:0">{% include "navbar.html" %}</div>
       <div class="row" style="margin-top:50px"></div>
       <div class="row"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <div class="row">
-      <div class="content">
+      <div class="content" style="z-index:-2">
       {% block content %}{% endblock %}
       </div>
       </div>

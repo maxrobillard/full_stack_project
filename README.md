@@ -11,7 +11,7 @@ La solution keycloak n'a pas été utilisée mais la logique de connexion est se
 
 **Pour démarrer l'application Flast api, la base de données, kong et keycloak**
 
-A la racine du projet taper la commande : 'docker-compose up -d build'
+A la racine du projet taper la commande : 'docker-compose build' pour construire les images puis taper 'docker-compose up' pour lancer l'api
 
 ***
 
@@ -107,6 +107,11 @@ Le fichier main.py permet de configurer l'API.
 
 ### Kong
 >L'implémentation de Kong est réalisé dans le docker et le service est opérationnel. Konga a été instancié aussi à l'adresse [localhost:1337](http://localhost:1337/) pour permettre de visualiser les flux et les services créés.
+> Les différentes routes ainsi que le service Api a été créé. 
+> Cependant aucun plugin de kong est utilisé.
+> ![routes_kong](https://github.com/maxrobillard/full_stack_project/img_readme/routes_kong.JPG)
+> ![service_kong](https://github.com/maxrobillard/full_stack_project/img_readme/serviceKong.JPG)
+> 
 
 ### Konga
 
