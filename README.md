@@ -84,7 +84,7 @@ Le fichier main.py permet de configurer l'API.
 
 ---
 ## Rest API
->Afin de vérifier l'API, vous pouvez naviguer sur la page suivante [localhost:8000/docs](http://localhost:8000/docs) et vous pouvez tester les requêtes **GET** et **POST** avec le button *Try it out*.
+>Afin de vérifier l'API, vous pouvez naviguer sur la page suivante [localhost:5000/docs](http://localhost:8000/docs) et vous pouvez tester les requêtes **GET** et **POST** avec le button *Try it out*.
 
 ---
 
