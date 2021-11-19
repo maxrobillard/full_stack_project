@@ -52,12 +52,15 @@ def logout_remove_cookie(request: Request, response: Response, user: User = Depe
 def profil(request: Request, db: Session = Depends(get_db)):
 
     authorization: str = request.cookies.get("access_token")
-
+    print(authorization)
     if authorization is not None:
         scheme, param = get_authorization_scheme_param(authorization)
-        user = get_current_user_from_token(param, db)
-        articles = retreive_articles_by_writer(user.id, db)
-        return templates.TemplateResponse("profil.html", {"request": request, "user": user, "articles": articles})
+        try:
+            user = get_current_user_from_token(param, db)
+            articles = retreive_articles_by_writer(user.id, db)
+            return templates.TemplateResponse("profil.html", {"request": request, "user": user, "articles": articles})
+        except HTTPException:
+             pass
     return RedirectResponse("/connexion")
 
 
