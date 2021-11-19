@@ -84,7 +84,7 @@ Le fichier main.py permet de configurer l'API.
 
 ---
 ## Rest API
->Afin de vérifier l'API, vous pouvez naviguer sur la page suivante [localhost:5000/docs](http://localhost:8000/docs) et vous pouvez tester les requêtes **GET** et **POST** avec le button *Try it out*.
+>Afin de vérifier l'API, vous pouvez naviguer sur la page suivante [localhost:5000/docs](http://localhost:5000/docs) et vous pouvez tester les requêtes **GET** et **POST** avec le button *Try it out*.
 
 ---
 
@@ -97,5 +97,5 @@ Le fichier main.py permet de configurer l'API.
 ---
 
 ### Kong
->L'implémentation de Kong est réalisé dans le docker et le service est opérationnel. Konga a été instancié aussi à l'adresse http://localhost:1337/ pour permettre de visualiser les flux et les services créés.
+>L'implémentation de Kong est réalisé dans le docker et le service est opérationnel. Konga a été instancié aussi à l'adresse [localhost:1337](http://localhost:1337/) pour permettre de visualiser les flux et les services créés.
 
